@@ -1,10 +1,17 @@
-part of 'pokemon_entity.dart';
+import 'dart:convert';
 
-class MovesEntities {
+import 'package:hive/hive.dart';
+part 'moves_model.g.dart';
+
+@HiveType(typeId: 3)
+class MovesModel {
+  @HiveField(0)
   String name;
+  @HiveField(1)
   String url;
+  @HiveField(2)
   String typeName;
-  MovesEntities({
+  MovesModel({
     this.name = '',
     this.url = '',
     this.typeName = '',
@@ -18,8 +25,8 @@ class MovesEntities {
     };
   }
 
-  factory MovesEntities.fromMap(Map<String, dynamic> map) {
-    return MovesEntities(
+  factory MovesModel.fromMap(Map<String, dynamic> map) {
+    return MovesModel(
       name: map['name'] ?? '',
       url: map['url'] ?? '',
       typeName: map['type']['name'] ?? '',
@@ -28,5 +35,5 @@ class MovesEntities {
 
   String toJson() => json.encode(toMap());
 
-  factory MovesEntities.fromJson(String source) => MovesEntities.fromMap(json.decode(source));
+  factory MovesModel.fromJson(String source) => MovesModel.fromMap(json.decode(source));
 }
