@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:hive/hive.dart';
+import 'package:pokedex_challenge/src/core/models/pokemon/ability_model.dart';
 import 'package:pokedex_challenge/src/core/models/pokemon/moves_model.dart';
 import 'package:pokedex_challenge/src/core/models/pokemon/pokemon_model.dart';
 import 'package:pokedex_challenge/src/core/models/pokemon/stats_model.dart';
@@ -14,6 +15,7 @@ class LocalStorage implements ILocalStorage {
   final Log logger;
   LocalStorage({required this.logger}) {
     print("${this.hashCode}");
+    initHive();
   }
 
   static initHive() async {
@@ -24,8 +26,10 @@ class LocalStorage implements ILocalStorage {
     Hive.registerAdapter(PokemonModelAdapter());
     Hive.registerAdapter(StatsModelAdapter());
     Hive.registerAdapter(TypeModelAdapter());
+    Hive.registerAdapter(AbilityModelAdapter());
 
-    await Hive.openBox<PokemonModel>("pokemons");
+    // await Hive.deleteBoxFromDisk("pokemons");
+    await Hive.openBox<String>("pokemons");
   }
 
   @override

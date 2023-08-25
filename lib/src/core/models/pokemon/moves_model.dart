@@ -27,9 +27,9 @@ class MovesModel {
 
   factory MovesModel.fromMap(Map<String, dynamic> map) {
     return MovesModel(
-      name: map['name'] ?? '',
-      url: map['url'] ?? '',
-      typeName: map['type']['name'] ?? '',
+      name: map['move'] != null ? map['move']['name'] : "",
+      url: map['move'] != null ? map['move']['url'] : "",
+      typeName: map['type'] != null ? map['type']['name'] : "",
     );
   }
 

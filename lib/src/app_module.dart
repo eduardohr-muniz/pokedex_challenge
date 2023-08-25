@@ -5,7 +5,10 @@ import 'package:pokedex_challenge/src/core/interfaces/htpp/i_http.dart';
 import 'package:pokedex_challenge/src/core/interfaces/local_storage/i_local_storage.dart';
 import 'package:pokedex_challenge/src/core/interfaces/local_storage/local_storage.dart';
 import 'package:pokedex_challenge/src/core/log/log.dart';
+import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/update_move_pokemon_usecase.dart';
+import 'package:pokedex_challenge/src/modules/info/aplication/info_controller.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/home_controller.dart';
+import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/get_dialog_description_view_model_usecase.dart';
 import 'package:pokedex_challenge/src/modules/home/domain/repositories/i_pokemons_repository.dart';
 import 'package:pokedex_challenge/src/modules/home/domain/repositories/pokemons_repository.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/get_card_pockemons_view_models_usecase.dart';
@@ -21,7 +24,11 @@ class AppModule extends Module {
         Bind.singleton<IPokemonsRepository>((i) => PokemonsRepository(http: i.get(), localStorage: i.get())),
         Bind.singleton<GetCardPockemonViewModelUsecase>((i) => GetCardPockemonViewModelUsecase(pokemonsRepository: i.get())),
         Bind.singleton<GetPokemonListResultModelUsecase>((i) => GetPokemonListResultModelUsecase(pokemonsRepository: i.get())),
-        Bind.singleton<HomeController>((i) => HomeController(getPokemonListResultModelUseCase: i.get(), getCardPockemonViewModelUseCase: i.get())),
+        Bind.singleton<GetDialogDescriptionViewModelUsecase>((i) => GetDialogDescriptionViewModelUsecase(pokemonsRepository: i.get())),
+        Bind.singleton<HomeController>((i) => HomeController(
+            getPokemonListResultModelUseCase: i.get(), getCardPockemonViewModelUseCase: i.get(), getDialogDescriptionViewModelUsecase: i.get())),
+        Bind.singleton<InfoController>((i) => InfoController(i.get())),
+        Bind.singleton<UpdateMovePokemonUsecase>((i) => UpdateMovePokemonUsecase(pokemonsRepository: i.get())),
       ];
 
   @override

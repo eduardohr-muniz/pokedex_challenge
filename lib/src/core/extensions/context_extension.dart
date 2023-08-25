@@ -29,7 +29,7 @@ extension ContextExtension on BuildContext {
   double get w => MediaQuery.sizeOf(this).width;
 
   ///Mediaquery.size.height[h]
-  double get h => MediaQuery.sizeOf(this).width;
+  double get h => MediaQuery.sizeOf(this).height;
 
   ///Only numbers regex
   RegExp get rgxNumber => RegExp(r'\d+');

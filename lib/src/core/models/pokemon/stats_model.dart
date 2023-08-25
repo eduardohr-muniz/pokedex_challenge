@@ -24,7 +24,7 @@ class StatsModel {
 
   factory StatsModel.fromMap(Map<String, dynamic> map) {
     return StatsModel(
-      baseStat: map['baseStat']?.toDouble() ?? 0.0,
+      baseStat: map['base_stat']?.toDouble() ?? 0.0,
       name: map['stat']['name'] ?? '',
     );
   }

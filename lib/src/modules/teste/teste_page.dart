@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_challenge/src/core/helpers/tag_entity.dart';
 import 'package:pokedex_challenge/src/core/helpers/treatment.dart';
-import 'package:pokedex_challenge/src/modules/home/ui/components/diagonal_container.dart';
+import 'package:pokedex_challenge/src/modules/info/ui/components/diagonal_container.dart';
 import 'package:pokedex_challenge/src/modules/home/ui/components/tag_card.dart';
 import '../../core/interfaces/messages/messages.dart';
 

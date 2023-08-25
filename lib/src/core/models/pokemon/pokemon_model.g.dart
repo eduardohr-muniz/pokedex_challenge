@@ -28,13 +28,15 @@ class PokemonModelAdapter extends TypeAdapter<PokemonModel> {
       evolutions: (fields[10] as List).cast<PokemonModel>(),
       types: (fields[9] as List).cast<TypeModel>(),
       urlImage: fields[7] as String,
+      abilities: (fields[11] as List).cast<AbilityModel>(),
+      moves: (fields[12] as List).cast<MovesModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, PokemonModel obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -56,7 +58,11 @@ class PokemonModelAdapter extends TypeAdapter<PokemonModel> {
       ..writeByte(9)
       ..write(obj.types)
       ..writeByte(10)
-      ..write(obj.evolutions);
+      ..write(obj.evolutions)
+      ..writeByte(11)
+      ..write(obj.abilities)
+      ..writeByte(12)
+      ..write(obj.moves);
   }
 
   @override

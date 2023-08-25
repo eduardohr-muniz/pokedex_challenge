@@ -48,26 +48,30 @@ class _CardPokemonState extends State<CardPokemon> {
         ),
       ));
     }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       child: Container(
-        decoration: BoxDecoration(color: viewModel!.backGroundColor.withOpacity(0.8), borderRadius: BorderRadius.circular(32), boxShadow: const [
-          BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.1), blurRadius: 6, spreadRadius: -1, offset: Offset(0, 4)),
-          BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.06), blurRadius: 4, spreadRadius: -1, offset: Offset(0, 2)),
-        ]),
+        decoration: BoxDecoration(
+          color: viewModel!.backGroundColor.withOpacity(0.8),
+          borderRadius: BorderRadius.circular(32),
+          boxShadow: const [
+            BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.1), blurRadius: 6, spreadRadius: -1, offset: Offset(0, 4)),
+            BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.06), blurRadius: 4, spreadRadius: -1, offset: Offset(0, 2)),
+          ],
+        ),
         child: Stack(
           children: [
             Align(
-                alignment: Alignment.topRight,
-                child: SizedBox(
-                    width: 140,
-                    child: ImageFiltered(
-                      imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                      child: SvgPicture.asset(
-                        "assets/images/pokeball.svg",
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ))),
+              alignment: Alignment.topRight,
+              child: SizedBox(
+                width: 140,
+                child: ImageFiltered(
+                  imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                  child: SvgPicture.asset("assets/images/pokeball.svg", fit: BoxFit.fitWidth),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: Row(

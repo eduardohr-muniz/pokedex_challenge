@@ -42,10 +42,7 @@ class Messages implements IMessages {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Pokeicon.heart_filled,
-                  color: Colors.red,
-                ),
+                const Icon(Pokeicon.heart_filled, color: Colors.red),
                 const SizedBox(width: 10),
                 SizedBox(
                     width: MediaQuery.sizeOf(context).width - 90,

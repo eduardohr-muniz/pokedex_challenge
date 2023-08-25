@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pokedex_challenge/src/core/extensions/extension.dart';
+import 'package:pokedex_challenge/src/core/helpers/pokeicon_icons.dart';
 import 'package:pokedex_challenge/src/core/log/log.dart';
+import 'package:pokedex_challenge/src/modules/info/ui/modal_info_pokemon.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/home_controller.dart';
 import 'package:pokedex_challenge/src/modules/home/ui/components/card_pokemon.dart';
 
@@ -28,7 +31,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        leading: const Icon(Pokeicon.gear, color: Colors.white),
+        actions: const [
+          Icon(Pokeicon.bell, color: Colors.white),
+          SizedBox(width: 12),
+        ],
+        elevation: 1,
+        automaticallyImplyLeading: true,
+        backgroundColor: context.primaryColor,
       ),
       body: AnimatedBuilder(
           animation: _homeController,
@@ -38,9 +48,18 @@ class _HomePageState extends State<HomePage> {
               itemExtent: 132,
               itemCount: _homeController.items.length,
               itemBuilder: (context, index) {
-                return CardPokemon(
-                  controller: _homeController,
-                  pokemon: _homeController.items[index],
+                return InkWell(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => ModalInfoPokemon(
+                              getDescription: () => _homeController.getDialogDescriptionViewModel(_homeController.items[index]),
+                            ));
+                  },
+                  child: CardPokemon(
+                    controller: _homeController,
+                    pokemon: _homeController.items[index],
+                  ),
                 );
               },
             );
