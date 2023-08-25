@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'package:pokedex_challenge/src/core/log/log.dart';
-import 'package:pokedex_challenge/src/core/models/pokemon/moves_model.dart';
+import 'package:pokedex_challenge/src/core/models/pokemon/move_model.dart';
+import 'package:pokedex_challenge/src/core/models/pokemon/pokemon_model.dart';
+import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/update_evolutions_pokemon_usecase.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/update_move_pokemon_usecase.dart';
 
 class InfoController extends ChangeNotifier {
   UpdateMovePokemonUsecase updateMovePokemonUsecase;
-  InfoController(this.updateMovePokemonUsecase);
+  UpdateEvolutionsPokemonUsecase updateEvolutionsPokemonUsecase;
+  InfoController(
+    this.updateMovePokemonUsecase,
+    this.updateEvolutionsPokemonUsecase,
+  );
   final PageController pageController = PageController(initialPage: 0, keepPage: true);
 
   int pageindex = 0;
@@ -21,7 +26,11 @@ class InfoController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<MovesModel> updateMove({required String key, required MovesModel move}) async {
-    return await updateMovePokemonUsecase(key: key, move: move);
+  Future<MoveModel> updateMove({required PokemonModel pokemon, required String moveName}) async {
+    return await updateMovePokemonUsecase(moveName: moveName, pokemon: pokemon);
+  }
+
+  Future<List<PokemonModel>> updateEvolutions(String pokemonName) async {
+    return await updateEvolutionsPokemonUsecase(pokemonName);
   }
 }

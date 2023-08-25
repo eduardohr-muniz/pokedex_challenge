@@ -9,8 +9,8 @@ import 'package:pokedex_challenge/src/modules/info/aplication/info_controller.da
 
 import 'package:pokedex_challenge/src/modules/info/domain/view_model/modal_info_view_model.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/components/button_pagination.dart';
+import 'package:pokedex_challenge/src/modules/info/ui/components/heart_icon_favorite.dart';
 
-import '../../../../core/helpers/pokeicon_icons.dart';
 import '../../../../core/helpers/treatment.dart';
 import '../../../home/ui/components/tag_card.dart';
 
@@ -23,7 +23,6 @@ class DiagonalContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<InfoController>();
     return Stack(
       children: [
         Column(
@@ -96,14 +95,14 @@ class DiagonalContainer extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              color: Colors.white,
-              width: context.w,
-              height: 70,
-              child: AnimatedBuilder(
-                  animation: controller,
-                  builder: (context, _) {
-                    return Row(
+            AnimatedBuilder(
+                animation: context.read<InfoController>(),
+                builder: (context, _) {
+                  return Container(
+                    color: Colors.white,
+                    width: context.w,
+                    height: 70,
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ButtonPagination(index: 0, label: "About"),
@@ -111,14 +110,14 @@ class DiagonalContainer extends StatelessWidget {
                         ButtonPagination(index: 2, label: "Evolution"),
                         ButtonPagination(index: 3, label: "Moves"),
                       ],
-                    );
-                  }),
-            )
+                    ),
+                  );
+                })
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 30, right: 20),
-          child: Align(alignment: Alignment.topRight, child: Icon(Pokeicon.heart, size: 35)),
+        Padding(
+          padding: const EdgeInsets.only(top: 30, right: 20),
+          child: Align(alignment: Alignment.topRight, child: HeartIconFavorite(pokemon: viewModel.pokemon)),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 40, right: 25),

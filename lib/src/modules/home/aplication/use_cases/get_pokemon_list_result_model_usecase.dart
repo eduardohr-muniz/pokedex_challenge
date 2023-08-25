@@ -1,4 +1,4 @@
-import 'package:pokedex_challenge/src/modules/home/domain/repositories/i_pokemons_repository.dart';
+import 'package:pokedex_challenge/src/core/domain/repositories/i_pokemons_repository.dart';
 
 import '../../../../core/models/pokemon_list_model.dart';
 

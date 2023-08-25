@@ -1,17 +1,17 @@
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
-part 'moves_model.g.dart';
+part 'move_model.g.dart';
 
 @HiveType(typeId: 3)
-class MovesModel {
+class MoveModel {
   @HiveField(0)
   String name;
   @HiveField(1)
   String url;
   @HiveField(2)
   String typeName;
-  MovesModel({
+  MoveModel({
     this.name = '',
     this.url = '',
     this.typeName = '',
@@ -25,8 +25,8 @@ class MovesModel {
     };
   }
 
-  factory MovesModel.fromMap(Map<String, dynamic> map) {
-    return MovesModel(
+  factory MoveModel.fromMap(Map<String, dynamic> map) {
+    return MoveModel(
       name: map['move'] != null ? map['move']['name'] : "",
       url: map['move'] != null ? map['move']['url'] : "",
       typeName: map['type'] != null ? map['type']['name'] : "",
@@ -35,5 +35,5 @@ class MovesModel {
 
   String toJson() => json.encode(toMap());
 
-  factory MovesModel.fromJson(String source) => MovesModel.fromMap(json.decode(source));
+  factory MoveModel.fromJson(String source) => MoveModel.fromMap(json.decode(source));
 }

@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import 'package:pokedex_challenge/src/core/models/pokemon/ability_model.dart';
-import 'package:pokedex_challenge/src/core/models/pokemon/moves_model.dart';
+import 'package:pokedex_challenge/src/core/models/pokemon/move_model.dart';
 
-import 'stats_model.dart';
+import 'stat_model.dart';
 import 'type_model.dart';
 
 part 'pokemon_model.g.dart';
@@ -20,7 +20,7 @@ class PokemonModel {
   @HiveField(3)
   double weight;
   @HiveField(4)
-  bool isDefault;
+  bool isFavorite;
   @HiveField(5)
   String name;
   @HiveField(6)
@@ -28,21 +28,21 @@ class PokemonModel {
   @HiveField(7)
   String urlImage;
   @HiveField(8)
-  List<StatsModel> stats;
+  List<StatModel> stats;
   @HiveField(9)
   List<TypeModel> types;
   @HiveField(10)
-  List<PokemonModel> evolutions;
+  String evolutions;
   @HiveField(11)
   List<AbilityModel> abilities;
   @HiveField(12)
-  List<MovesModel> moves;
+  List<MoveModel> moves;
   PokemonModel({
     required this.id,
     required this.baseExperience,
     required this.height,
     required this.weight,
-    required this.isDefault,
+    required this.isFavorite,
     required this.name,
     required this.order,
     required this.stats,
@@ -59,12 +59,12 @@ class PokemonModel {
       'baseExperience': baseExperience,
       'height': height,
       'weight': weight,
-      'isDefault': isDefault,
+      'isDefault': isFavorite,
       'name': name,
       'order': order,
       'stats': stats.map((x) => x.toMap()).toList(),
       'types': types.map((x) => x.toMap()).toList(),
-      'evolutions': evolutions.map((x) => x.toMap()).toList(),
+      'evolutions': evolutions,
       'abilities': abilities.map((x) => x.toMap()).toList(),
       'moves': moves.map((x) => x.toMap()).toList()
     };
@@ -76,15 +76,15 @@ class PokemonModel {
       baseExperience: map['baseExperience']?.toInt() ?? 0,
       height: map['height']?.toDouble() ?? 0.0,
       weight: map['weight']?.toDouble() ?? 0.0,
-      isDefault: map['isDefault'] ?? false,
+      isFavorite: map['isDefault'] ?? false,
       name: map['name'] ?? '',
       order: map['order']?.toInt() ?? 0,
-      stats: List<StatsModel>.from(map['stats']?.map((x) => StatsModel.fromMap(x)) ?? const []),
+      stats: List<StatModel>.from(map['stats']?.map((x) => StatModel.fromMap(x)) ?? const []),
       types: List<TypeModel>.from(map['types']?.map((x) => TypeModel.fromMap(x)) ?? const []),
-      evolutions: List<PokemonModel>.from(map['evolutions']?.map((x) => PokemonModel.fromMap(x)) ?? const []),
+      evolutions: map['evolutions'] ?? '',
       urlImage: map['sprites']['other']['official-artwork']['front_default'] ?? "",
       abilities: List<AbilityModel>.from(map['abilities']?.map((x) => AbilityModel.fromMap(x)) ?? const []),
-      moves: List<MovesModel>.from(map['moves']?.map((x) => MovesModel.fromMap(x)) ?? const []),
+      moves: List<MoveModel>.from(map['moves']?.map((x) => MoveModel.fromMap(x)) ?? const []),
     );
   }
 
@@ -98,7 +98,7 @@ class PokemonModel {
     return value;
   }
 
-  MovesModel getMoveByName(String name) {
+  MoveModel getMoveByName(String name) {
     return moves.where((element) => element.name == name).first;
   }
 
@@ -106,6 +106,6 @@ class PokemonModel {
 
   @override
   String toString() {
-    return 'PokemonModel(id: $id, baseExperience: $baseExperience, height: $height, weight: $weight, isDefault: $isDefault, name: $name, order: $order, urlImage: $urlImage, stats: $stats, types: $types, evolutions: $evolutions)';
+    return 'PokemonModel(id: $id, baseExperience: $baseExperience, height: $height, weight: $weight, isDefault: $isFavorite, name: $name, order: $order, urlImage: $urlImage, stats: $stats, types: $types, evolutions: $evolutions)';
   }
 }

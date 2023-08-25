@@ -25,8 +25,10 @@ class AboutPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ColumnDescriptionValue(description: "Height", value: "${viewModel.pokemon.height}m", pathIcon: Assets.iconHeight),
-              ColumnDescriptionValue(description: "Weight", value: "${viewModel.pokemon.weight}kg", pathIcon: Assets.iconWeight),
+              ColumnDescriptionValue(
+                  description: "Height", value: Treatment.metersToMetersOrCentimeters(viewModel.pokemon.height), pathIcon: Assets.iconHeight),
+              ColumnDescriptionValue(
+                  description: "Weight", value: Treatment.poundsToKilograms(viewModel.pokemon.weight), pathIcon: Assets.iconWeight),
               ColumnDescriptionValue(description: "Gender", value: "${viewModel.pokemon.baseExperience}m", pathIcon: Assets.iconGender),
             ],
           ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_challenge/src/core/extensions/extension.dart';
-import 'package:pokedex_challenge/src/core/models/pokemon/moves_model.dart';
+import 'package:pokedex_challenge/src/core/models/pokemon/move_model.dart';
 
-import 'package:pokedex_challenge/src/modules/info/ui/components/base_page_pagination.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/components/list_tile_moves.dart';
 
 import '../domain/view_model/modal_info_view_model.dart';
@@ -25,8 +24,8 @@ class MovesPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: viewModel.pokemon.moves.length,
               itemBuilder: (context, index) {
-                MovesModel move = viewModel.pokemon.moves[index];
-                return ListTileMoves(move: move, pokemonkey: viewModel.pokemon.name);
+                MoveModel move = viewModel.pokemon.moves[index];
+                return ListTileMoves(moveName: move.name, pokemon: viewModel.pokemon);
               },
             ),
           ),

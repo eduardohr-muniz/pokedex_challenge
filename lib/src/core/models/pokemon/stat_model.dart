@@ -2,15 +2,15 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 
-part 'stats_model.g.dart';
+part 'stat_model.g.dart';
 
 @HiveType(typeId: 1)
-class StatsModel {
+class StatModel {
   @HiveField(0)
   double baseStat;
   @HiveField(1)
   String name;
-  StatsModel({
+  StatModel({
     this.baseStat = 0.0,
     this.name = '',
   });
@@ -22,8 +22,8 @@ class StatsModel {
     };
   }
 
-  factory StatsModel.fromMap(Map<String, dynamic> map) {
-    return StatsModel(
+  factory StatModel.fromMap(Map<String, dynamic> map) {
+    return StatModel(
       baseStat: map['base_stat']?.toDouble() ?? 0.0,
       name: map['stat']['name'] ?? '',
     );
@@ -31,5 +31,5 @@ class StatsModel {
 
   String toJson() => json.encode(toMap());
 
-  factory StatsModel.fromJson(String source) => StatsModel.fromMap(json.decode(source));
+  factory StatModel.fromJson(String source) => StatModel.fromMap(json.decode(source));
 }

@@ -21,15 +21,15 @@ class PokemonModelAdapter extends TypeAdapter<PokemonModel> {
       baseExperience: fields[1] as int,
       height: fields[2] as double,
       weight: fields[3] as double,
-      isDefault: fields[4] as bool,
+      isFavorite: fields[4] as bool,
       name: fields[5] as String,
       order: fields[6] as int,
-      stats: (fields[8] as List).cast<StatsModel>(),
-      evolutions: (fields[10] as List).cast<PokemonModel>(),
+      stats: (fields[8] as List).cast<StatModel>(),
+      evolutions: fields[10] as String,
       types: (fields[9] as List).cast<TypeModel>(),
       urlImage: fields[7] as String,
       abilities: (fields[11] as List).cast<AbilityModel>(),
-      moves: (fields[12] as List).cast<MovesModel>(),
+      moves: (fields[12] as List).cast<MoveModel>(),
     );
   }
 
@@ -46,7 +46,7 @@ class PokemonModelAdapter extends TypeAdapter<PokemonModel> {
       ..writeByte(3)
       ..write(obj.weight)
       ..writeByte(4)
-      ..write(obj.isDefault)
+      ..write(obj.isFavorite)
       ..writeByte(5)
       ..write(obj.name)
       ..writeByte(6)

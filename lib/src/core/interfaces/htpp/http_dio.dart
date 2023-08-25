@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
-import 'package:pokedex_challenge/src/core/interfaces/htpp/htpp_exception.dart';
+import 'package:pokedex_challenge/src/core/interfaces/htpp/http_exception.dart';
 import 'package:pokedex_challenge/src/core/interfaces/htpp/http_response.dart';
 import '../../log/log.dart';
 import 'i_http.dart';
@@ -133,7 +133,7 @@ class HttpDio implements IHttp {
 
   Never _trowRestClientException(DioException dioError) {
     final response = dioError.response;
-    throw HttpExeption(
+    throw HttpExceptionCustom(
       error: dioError.error,
       message: response?.statusMessage,
       statusCode: response?.statusCode,

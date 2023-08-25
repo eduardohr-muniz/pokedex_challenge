@@ -1,14 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:pokedex_challenge/src/core/helpers/server_exception.dart';
 import 'package:pokedex_challenge/src/core/interfaces/htpp/http_response.dart';
 
-class HttpException implements Exception {
+class HttpExceptionCustom implements Exception {
   String? message;
   int? statusCode;
   dynamic error;
   HttpResponse response;
 
-  HttpException({
+  HttpExceptionCustom({
     this.message,
     this.statusCode,
     required this.error,
@@ -17,6 +18,15 @@ class HttpException implements Exception {
 
   @override
   String toString() {
-    return 'RestClientException(message: $message, statusCode: $statusCode, error: $error, response: $response)';
+    String defaul = '⚠️ERROR: \n$error';
+    if (statusCode != null) {
+      String? httpMessage = ServerException.exeptionEquals(statusCode!);
+      if (httpMessage != null) {
+        return httpMessage;
+      } else {
+        return defaul;
+      }
+    }
+    return defaul;
   }
 }

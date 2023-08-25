@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_challenge/src/core/extensions/extension.dart';
 import 'package:pokedex_challenge/src/core/helpers/treatment.dart';
-import 'package:pokedex_challenge/src/core/models/pokemon/stats_model.dart';
 import 'package:pokedex_challenge/src/modules/info/domain/view_model/modal_info_view_model.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/components/base_page_pagination.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/components/label_text.dart';

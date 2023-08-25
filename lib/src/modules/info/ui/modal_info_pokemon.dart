@@ -5,6 +5,7 @@ import 'package:pokedex_challenge/src/modules/info/aplication/info_controller.da
 import 'package:pokedex_challenge/src/modules/info/domain/view_model/modal_info_view_model.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/about_page.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/components/diagonal_container.dart';
+import 'package:pokedex_challenge/src/modules/info/ui/evolutions_page.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/moves_page.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/stats_page.dart';
 
@@ -26,11 +27,15 @@ class _ModalInfoPokemonState extends State<ModalInfoPokemon> {
   void initState() {
     super.initState();
     controller = context.read<InfoController>();
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      widget.getDescription().then((value) => setState(() {
-            viewModel = value;
-            controller.goPage(0);
-          }));
+      widget.getDescription().then((value) {
+        viewModel = value;
+      });
+      setState(() {});
+      Future.delayed(const Duration(milliseconds: 100), () {
+        controller.goPage(0);
+      });
     });
   }
 
@@ -55,6 +60,7 @@ class _ModalInfoPokemonState extends State<ModalInfoPokemon> {
                   children: [
                     AboutPage(viewModel: viewModel!),
                     StatsPage(viewModel: viewModel!),
+                    EvolutionsPage(pokemonName: viewModel!.pokemon.name),
                     MovesPage(viewModel: viewModel!),
                   ],
                 ),

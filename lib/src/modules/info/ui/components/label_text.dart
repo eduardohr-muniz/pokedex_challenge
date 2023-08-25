@@ -6,7 +6,7 @@ class LabelText extends StatelessWidget {
   final String label;
   final TextAlign? textAlign;
 
-  const LabelText(this.label, {this.textAlign});
+  const LabelText(this.label, {super.key, this.textAlign});
 
   @override
   Widget build(BuildContext context) {

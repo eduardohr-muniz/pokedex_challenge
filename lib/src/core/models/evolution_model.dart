@@ -25,7 +25,7 @@ class EvolutionModel {
 }
 
 class PrimaryPokemon {
-  List<SecondaryPokemon> secondaryPokemon;
+  List<SecondaryPokemon>? secondaryPokemon;
   bool isBaby;
   Species species;
 
@@ -37,7 +37,7 @@ class PrimaryPokemon {
 
   Map<String, dynamic> toMap() {
     return {
-      'evolves_to': secondaryPokemon.map((x) => x.toMap()).toList(),
+      'evolves_to': secondaryPokemon?.map((x) => x.toMap()).toList() ?? const [],
       'isBaby': isBaby,
       'species': species.toMap(),
     };
@@ -57,7 +57,7 @@ class PrimaryPokemon {
 }
 
 class SecondaryPokemon {
-  List<TerciaryPokemon> terciaryPokemon;
+  List<TerciaryPokemon>? terciaryPokemon;
   bool isBaby;
   Species species;
 
@@ -69,7 +69,7 @@ class SecondaryPokemon {
 
   Map<String, dynamic> toMap() {
     return {
-      'evolves_to': terciaryPokemon.map((x) => x.toMap()).toList(),
+      'evolves_to': terciaryPokemon?.map((x) => x.toMap()).toList() ?? const [],
       'isBaby': isBaby,
       'species': species.toMap(),
     };
@@ -89,59 +89,31 @@ class SecondaryPokemon {
 }
 
 class TerciaryPokemon {
-  List<SafePokemon> safePokemon;
   bool isBaby;
-  Species species;
+  Species? species;
 
   TerciaryPokemon({
-    required this.safePokemon,
     required this.isBaby,
     required this.species,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'evolves_to': safePokemon.map((x) => x.toMap()).toList(),
       'isBaby': isBaby,
-      'species': species.toMap(),
+      'species': species?.toMap() ?? "",
     };
   }
 
   factory TerciaryPokemon.fromMap(Map<String, dynamic> map) {
     return TerciaryPokemon(
-      safePokemon: List<SafePokemon>.from(map['evolves_to']?.map((x) => SafePokemon.fromMap(x)) ?? const []),
       isBaby: map['isBaby'] ?? false,
-      species: Species.fromMap(map['species']),
+      species: Species.fromMap(map['species'] ?? ""),
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory TerciaryPokemon.fromJson(String source) => TerciaryPokemon.fromMap(json.decode(source));
-}
-
-class SafePokemon {
-  Species species;
-
-  SafePokemon({
-    required this.species,
-  });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'species': species.toMap(),
-    };
-  }
-
-  factory SafePokemon.fromMap(Map<String, dynamic> map) {
-    return SafePokemon(
-      species: Species.fromMap(map['species']),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory SafePokemon.fromJson(String source) => SafePokemon.fromMap(json.decode(source));
 }
 
 class Species {
