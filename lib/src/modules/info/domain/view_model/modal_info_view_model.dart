@@ -25,7 +25,7 @@ class ModalInfoViewModel {
       name: pokemonModel.name,
       tags: tags,
       urlImage: pokemonModel.urlImage,
-      favorite: false, //TODO implementar favorito
+      favorite: false,
     );
   }
 }

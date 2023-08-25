@@ -5,7 +5,6 @@ import 'package:pokedex_challenge/src/core/extensions/extension.dart';
 import 'package:pokedex_challenge/src/core/helpers/treatment.dart';
 import 'package:pokedex_challenge/src/core/models/pokemon/pokemon_model.dart';
 import 'package:pokedex_challenge/src/modules/info/aplication/info_controller.dart';
-import 'package:pokedex_challenge/src/modules/info/domain/view_model/modal_info_view_model.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/components/base_page_pagination.dart';
 import 'package:pokedex_challenge/src/modules/info/ui/components/label_text.dart';
 

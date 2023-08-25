@@ -1,11 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
 import 'package:pokedex_challenge/src/core/domain/repositories/favorite_repositoryl.dart';
-import 'package:pokedex_challenge/src/core/domain/repositories/i_favorite_repository.dart';
 import 'package:pokedex_challenge/src/core/helpers/routes.dart';
 import 'package:pokedex_challenge/src/core/interfaces/htpp/http_dio.dart';
-import 'package:pokedex_challenge/src/core/interfaces/htpp/i_http.dart';
-import 'package:pokedex_challenge/src/core/interfaces/local_storage/i_local_storage.dart';
 import 'package:pokedex_challenge/src/core/interfaces/local_storage/local_storage.dart';
 import 'package:pokedex_challenge/src/core/log/log.dart';
 import 'package:pokedex_challenge/src/modules/favorites/aplication/use_cases/get_favorites_usecase.dart';
@@ -17,7 +14,6 @@ import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/update_m
 import 'package:pokedex_challenge/src/modules/info/aplication/info_controller.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/home_controller.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/get_dialog_description_view_model_usecase.dart';
-import 'package:pokedex_challenge/src/core/domain/repositories/i_pokemons_repository.dart';
 import 'package:pokedex_challenge/src/core/domain/repositories/pokemons_repository.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/get_card_pockemons_view_models_usecase.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/use_cases/get_pokemon_list_result_model_usecase.dart';

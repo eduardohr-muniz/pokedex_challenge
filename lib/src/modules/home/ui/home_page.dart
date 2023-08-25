@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex_challenge/src/core/extensions/extension.dart';
 import 'package:pokedex_challenge/src/core/helpers/pokeicon_icons.dart';
 import 'package:pokedex_challenge/src/core/helpers/routes.dart';
-import 'package:pokedex_challenge/src/modules/info/ui/modal_info_pokemon.dart';
 import 'package:pokedex_challenge/src/modules/home/aplication/home_controller.dart';
 import 'package:pokedex_challenge/src/modules/home/ui/components/card_pokemon.dart';
 
@@ -17,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final messages;
+  late final Messages messages;
   final scrollController = ScrollController();
   late final HomeController _homeController;
   @override

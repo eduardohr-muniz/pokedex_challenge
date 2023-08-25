@@ -1,9 +1,11 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex_challenge/src/core/extensions/extension.dart';
 import 'package:pokedex_challenge/src/modules/info/aplication/info_controller.dart';
 
-class ButtonPagination extends StatelessWidget {
+class ButtonPagination extends StatefulWidget {
   final int index;
   final String label;
 
@@ -14,22 +16,27 @@ class ButtonPagination extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ButtonPagination> createState() => _ButtonPaginationState();
+}
+
+class _ButtonPaginationState extends State<ButtonPagination> {
+  @override
   Widget build(BuildContext context) {
     final controller = context.read<InfoController>();
-    bool isSelected = controller.pageIsSelected(index);
+    bool isSelected = controller.pageIsSelected(widget.index);
 
     return GestureDetector(
-      onTap: () => controller.goPage(index),
+      onTap: () => controller.goPage(widget.index),
       child: Container(
         decoration: BoxDecoration(
           border: isSelected
-              ? const Border(
-                  bottom: BorderSide(color: Colors.red, width: 2),
+              ? Border(
+                  bottom: BorderSide(color: context.primaryColor, width: 2),
                 )
               : null,
         ),
         child: Text(
-          label,
+          widget.label,
           style: context.textTheme.titleMedium!.copyWith(
             color: isSelected ? context.primaryColor : null,
           ),

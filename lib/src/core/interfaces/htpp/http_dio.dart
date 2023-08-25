@@ -48,15 +48,15 @@ class HttpDio implements IHttp {
   @override
   Future<HttpResponse<T>> get<T>(String path, {Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
     try {
-      // _logInfo(path, "GET", queryParamters: query);
-      // DateTime start = DateTime.now();
+      _logInfo(path, "GET", queryParamters: query);
+      DateTime start = DateTime.now();
       final response = await _dio.get(
         path,
         queryParameters: query,
         options: Options(headers: headers),
       );
-      // DateTime end = DateTime.now();
-      // _logResponse(path, "GET", response: response, time: end.difference(start).inMilliseconds.toString());
+      DateTime end = DateTime.now();
+      _logResponse(path, "GET", response: response, time: end.difference(start).inMilliseconds.toString());
       return _dioResponseConverter(response);
     } on DioException catch (e) {
       _trowRestClientException(e);
